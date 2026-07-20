@@ -1,6 +1,9 @@
 # End-to-End Sales Analytics Pipeline
 
 ## Business Overview
+
+![Dashboard Preview](dashboard_preview.png)
+
 This project is a complete end-to-end data pipeline built to answer real business questions about sales performance, regional profitability, and product line margins. It demonstrates a full data engineering and analytics workflow: extracting raw data, cleaning it via Python/Pandas, loading it into a SQLite database, analysing it via SQL, and visualising the results in Power BI.
 
 ## Dataset
