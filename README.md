@@ -19,20 +19,20 @@ This project uses a generated dataset modeled heavily on the classic **Tableau "
 Clone the repository, then run the pipeline from the project root:
 
 ```bash
-# Install requirements
-pip install -r requirements.txt
+# Install requirements (use 'py' on Windows, 'python' or 'python3' on Mac/Linux)
+py -m pip install -r requirements.txt
 
 # 1. Generate Raw Data
-python scripts/generate_dataset.py
+py scripts/generate_dataset.py
 
 # 2. Clean the Data
-python scripts/01_clean_data.py
+py scripts/01_clean_data.py
 
 # 3. Run ETL to load into SQLite
-python scripts/02_etl_to_sqlite.py
+py scripts/02_etl_to_sqlite.py
 
 # 4. Run automated tests to verify data integrity
-python tests/test_pipeline.py
+py tests/test_pipeline.py
 ```
 
 ## Key Business Insights (Computed from Data)
