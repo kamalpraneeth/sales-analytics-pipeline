@@ -52,7 +52,7 @@ The live dashboard is deployed on Render and can be viewed here: [Insert Render 
 
 To run the web dashboard locally:
 ```bash
-uvicorn app.main:app --reload
+py -m uvicorn app.main:app --reload
 ```
 Navigate to `http://localhost:8000` to view the interactive dashboard.
 
