@@ -48,3 +48,6 @@ After running the pipeline and querying the SQLite database (`sql/queries.sql`),
 
 ## Power BI Dashboard
 Detailed instructions for setting up the Power BI dashboard (including connecting directly to the SQLite database via ODBC) are located in `docs/powerbi_instructions.md`.
+
+## License
+This project is licensed under the MIT License - see the `LICENSE` file for details.
