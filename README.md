@@ -42,7 +42,7 @@ py tests/test_pipeline.py
 ## Key Business Insights (Computed from Data)
 After running the pipeline and querying the SQLite database (`sql/queries.sql`), several key insights emerged:
 
-1. **Overall Performance:** The dataset covers 5,009 unique orders totaling **$10.02M in revenue** and **$1.24M in profit** (an overall profit margin of **12.4%**).
+1. **Overall Performance:** The dataset covers 5,009 unique orders totaling **$10.02M in revenue** and **$1.24M in profit** (an overall profit margin of **12.37%**).
 2. **Top Performing Sub-Category:** **Copiers** are by far the most profitable sub-category, generating **$976K** in profit alone. Even with steep discounts on some items, the sheer margin on copiers drives the bulk of the business's bottom line.
 3. **Regional Strength:** The **South** region is the top performer for top-line revenue, generating **$2.60M in sales**. Interestingly, while the South generated more revenue, the **Central** region yielded significantly more profit ($343K vs $309K in the South), suggesting heavier discounting or lower-margin item sales in the South region.
 
