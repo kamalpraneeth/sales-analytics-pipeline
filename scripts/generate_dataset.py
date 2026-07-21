@@ -1,10 +1,9 @@
 """
 generate_dataset.py — Generate a realistic Superstore-equivalent dataset
 =========================================================================
-The Tableau "Sample - Superstore" dataset is not reliably available via
-a public URL without authentication. This script generates an equivalent
-dataset with the same structure, realistic distributions, and ~9,994 rows
-(matching the original row count).
+A procedurally generated synthetic retail sales dataset (~9,600 orders), 
+modeled on the structure of the public Superstore dataset, used to 
+demonstrate the full ETL -> SQL -> BI pipeline.
 
 Dataset structure mirrors the Tableau Superstore Sales dataset:
   - Row ID, Order ID, Order Date, Ship Date, Ship Mode
@@ -15,11 +14,6 @@ Dataset structure mirrors the Tableau Superstore Sales dataset:
 
 After generation, the file is saved to data/raw/superstore_raw.csv
 and the project's cleaning + ETL pipeline can run normally.
-
-Source reference:
-  Tableau Sample - Superstore (structure and approximate distributions)
-  https://www.tableau.com/solutions/workbook/superstore-sample-workbook
-  Kaggle mirror: https://www.kaggle.com/datasets/vivek468/superstore-dataset-final
 """
 
 import os
@@ -71,27 +65,27 @@ SHIP_DAYS = {"Standard Class": (5, 7), "Second Class": (3, 5),
 
 CATEGORIES = {
     "Furniture": {
-        "Chairs":     ("FUR-CH", 150, 900, 0.05, 0.22),
-        "Tables":     ("FUR-TA", 200, 1500, 0.15, -0.08),   # often loss-making
-        "Bookcases":  ("FUR-BO", 120, 800, 0.12, 0.03),
-        "Furnishings":("FUR-FU", 20, 200, 0.05, 0.18),
+        "Chairs":     ("FUR-CH", 40, 300, 0.05, 0.22),
+        "Tables":     ("FUR-TA", 70, 500, 0.15, -0.08),   # often loss-making
+        "Bookcases":  ("FUR-BO", 40, 300, 0.12, 0.03),
+        "Furnishings":("FUR-FU", 5, 50, 0.05, 0.18),
     },
     "Office Supplies": {
-        "Binders":    ("OFF-BI", 5, 80, 0.02, 0.32),
-        "Paper":      ("OFF-PA", 10, 100, 0.01, 0.40),
-        "Storage":    ("OFF-ST", 30, 300, 0.05, 0.20),
-        "Art":        ("OFF-AR", 2, 40, 0.01, 0.35),
-        "Appliances": ("OFF-AP", 50, 500, 0.08, 0.15),
-        "Labels":     ("OFF-LA", 5, 50, 0.01, 0.42),
-        "Fasteners":  ("OFF-FA", 2, 20, 0.01, 0.30),
-        "Envelopes":  ("OFF-EN", 3, 30, 0.01, 0.38),
-        "Supplies":   ("OFF-SU", 15, 150, 0.03, 0.10),
+        "Binders":    ("OFF-BI", 2, 20, 0.02, 0.32),
+        "Paper":      ("OFF-PA", 3, 30, 0.01, 0.40),
+        "Storage":    ("OFF-ST", 10, 80, 0.05, 0.20),
+        "Art":        ("OFF-AR", 1, 15, 0.01, 0.35),
+        "Appliances": ("OFF-AP", 20, 150, 0.08, 0.15),
+        "Labels":     ("OFF-LA", 2, 15, 0.01, 0.42),
+        "Fasteners":  ("OFF-FA", 1, 8, 0.01, 0.30),
+        "Envelopes":  ("OFF-EN", 2, 10, 0.01, 0.38),
+        "Supplies":   ("OFF-SU", 5, 40, 0.03, 0.10),
     },
     "Technology": {
-        "Phones":     ("TEC-PH", 100, 1800, 0.05, 0.17),
-        "Accessories":("TEC-AC", 20, 400, 0.04, 0.20),
-        "Machines":   ("TEC-MA", 300, 3000, 0.10, 0.14),
-        "Copiers":    ("TEC-CO", 500, 8000, 0.05, 0.37),
+        "Phones":     ("TEC-PH", 30, 400, 0.05, 0.17),
+        "Accessories":("TEC-AC", 10, 100, 0.04, 0.20),
+        "Machines":   ("TEC-MA", 100, 800, 0.10, 0.14),
+        "Copiers":    ("TEC-CO", 150, 1200, 0.05, 0.37),
     },
 }
 

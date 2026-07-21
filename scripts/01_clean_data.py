@@ -1,13 +1,10 @@
 """
-Script 01 — Download & Clean the Superstore Sales Dataset
+Script 01 — Clean the Synthetic Superstore Sales Dataset
 ==========================================================
-Dataset Source (exact, locked):
-  Plotly public datasets mirror (no login required):
-  https://raw.githubusercontent.com/plotly/datasets/master/superstore.csv
-
-  Original dataset credit:
-  "Sample - Superstore" by Tableau / Kaggle user vivek468
-  https://www.kaggle.com/datasets/vivek468/superstore-dataset-final
+Dataset Source:
+  A procedurally generated synthetic retail sales dataset (~9,600 orders), 
+  modeled on the structure of the public Superstore dataset.
+  Generated via `scripts/generate_dataset.py`.
 
 What this script does:
   1. Downloads the raw CSV from the locked URL (skip if already present)

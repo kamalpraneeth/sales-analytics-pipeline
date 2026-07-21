@@ -7,9 +7,10 @@
 This project is a complete end-to-end data pipeline built to answer real business questions about sales performance, regional profitability, and product line margins. It demonstrates a full data engineering and analytics workflow: extracting raw data, cleaning it via Python/Pandas, loading it into a SQLite database, analysing it via SQL, and visualising the results in Power BI.
 
 ## Dataset
-This project uses a generated dataset modeled heavily on the classic **Tableau "Sample - Superstore" dataset**.
-- The raw dataset is generated programmatically (`scripts/generate_dataset.py`) to mimic real-world transactional data without relying on external, potentially broken URLs.
-- It contains ~10,000 rows across 21 columns (Orders, Customers, Products, Regions, Sales, Profits).
+**Source**: A procedurally generated synthetic retail sales dataset (~9,600 orders).
+This dataset is modeled on the structure of the public Superstore dataset, generating realistic distributions for sales, profit, and product categories to demonstrate a full data engineering and BI workflow.
+
+The dataset mimics the structure of standard retail data with 21 columns (Orders, Customers, Products, Regions, Sales, Profits).
 
 ## Setup & Execution
 
@@ -41,9 +42,9 @@ py tests/test_pipeline.py
 ## Key Business Insights (Computed from Data)
 After running the pipeline and querying the SQLite database (`sql/queries.sql`), several key insights emerged:
 
-1. **Overall Performance:** The dataset covers 5,009 unique orders totaling **$44.09M in revenue** and **$7.27M in profit** (an overall profit margin of **16.5%**).
-2. **Top Performing Sub-Category:** **Copiers** are by far the most profitable sub-category, generating **$6.16M** in profit alone. Even with steep discounts on some items, the sheer margin on copiers drives the bulk of the business's bottom line.
-3. **Regional Strength:** The **Central** region is the top performer, generating **$11.38M in revenue** and **$2.01M in profit**. Interestingly, while the South region generated more revenue ($11.45M), it yielded less profit ($1.82M), suggesting heavier discounting or lower-margin item sales in that region.
+1. **Overall Performance:** The dataset covers 5,009 unique orders totaling **$10.02M in revenue** and **$1.24M in profit** (an overall profit margin of **12.4%**).
+2. **Top Performing Sub-Category:** **Copiers** are by far the most profitable sub-category, generating **$976K** in profit alone. Even with steep discounts on some items, the sheer margin on copiers drives the bulk of the business's bottom line.
+3. **Regional Strength:** The **South** region is the top performer for top-line revenue, generating **$2.60M in sales**. Interestingly, while the South generated more revenue, the **Central** region yielded significantly more profit ($343K vs $309K in the South), suggesting heavier discounting or lower-margin item sales in the South region.
 
 ## Power BI Dashboard
 Detailed instructions for setting up the Power BI dashboard (including connecting directly to the SQLite database via ODBC) are located in `docs/powerbi_instructions.md`.
