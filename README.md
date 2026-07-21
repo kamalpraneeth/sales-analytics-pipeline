@@ -48,7 +48,7 @@ After running the pipeline and querying the SQLite database (`sql/queries.sql`),
 
 ## Live Web Dashboard
 A lightweight FastAPI + Plotly dashboard has been added to provide a web-based view of the same analytics shown in Power BI. 
-The live dashboard is deployed on Render and can be viewed here: [Insert Render URL here once deployed]
+The live dashboard is deployed on Render and can be viewed here: [https://sales-analytics-pipeline.onrender.com](https://sales-analytics-pipeline.onrender.com)
 
 To run the web dashboard locally:
 ```bash
