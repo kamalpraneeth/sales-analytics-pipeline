@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sales Analytics Dashboard</title>
+    <meta name="description" content="Live sales and profit analytics dashboard">
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #0f172a;
+            --glass-bg: rgba(30, 41, 59, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --accent: #3b82f6;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, var(--bg-dark) 0%, #1e1b4b 100%);
+            color: var(--text-primary);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        header {
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin: 0;
+            background: linear-gradient(to right, #60a5fa, #a78bfa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .kpi-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s ease-in-out;
+        }
+
+        .kpi-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .kpi-card h3 {
+            margin: 0;
+            font-size: 1rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .kpi-card .value {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-top: 0.5rem;
+            color: var(--text-primary);
+        }
+
+        .charts-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .chart-full {
+            grid-column: 1 / -1;
+        }
+
+        .chart-container {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            border-radius: 1rem;
+            padding: 1rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            min-height: 400px;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .charts-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Sales Analytics Dashboard</h1>
+            <p style="color: var(--text-secondary); margin-top: 0.5rem;">Live Performance Metrics</p>
+        </header>
+
+        <div class="kpi-grid">
+            <div class="kpi-card" id="kpi-revenue">
+                <h3>Total Revenue</h3>
+                <div class="value">${{ "{:,.2f}".format(kpis.total_revenue) if kpis.total_revenue else "0" }}</div>
+            </div>
+            <div class="kpi-card" id="kpi-profit">
+                <h3>Total Profit</h3>
+                <div class="value">${{ "{:,.2f}".format(kpis.total_profit) if kpis.total_profit else "0" }}</div>
+            </div>
+            <div class="kpi-card" id="kpi-margin">
+                <h3>Avg Margin</h3>
+                <div class="value">{{ "{:.2f}".format(kpis.profit_margin_pct) if kpis.profit_margin_pct else "0" }}%</div>
+            </div>
+            <div class="kpi-card" id="kpi-ship">
+                <h3>Avg Ship Days</h3>
+                <div class="value">{{ "{:.1f}".format(kpis.avg_ship_days) if kpis.avg_ship_days else "0" }}</div>
+            </div>
+        </div>
+
+        <div class="charts-grid">
+            <div class="chart-container chart-full" id="line-chart"></div>
+            <div class="chart-container" id="bar-chart"></div>
+            <div class="chart-container" id="donut-chart"></div>
+        </div>
+    </div>
+
+    <script>
+        const chartsData = {{ charts | tojson | safe }};
+        
+        const config = { responsive: true, displayModeBar: false };
+
+        Plotly.newPlot('line-chart', chartsData.line_chart.data, chartsData.line_chart.layout, config);
+        Plotly.newPlot('bar-chart', chartsData.bar_chart.data, chartsData.bar_chart.layout, config);
+        Plotly.newPlot('donut-chart', chartsData.donut_chart.data, chartsData.donut_chart.layout, config);
+    </script>
+</body>
+</html>

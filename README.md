@@ -46,6 +46,16 @@ After running the pipeline and querying the SQLite database (`sql/queries.sql`),
 2. **Top Performing Sub-Category:** **Copiers** are by far the most profitable sub-category, generating **$976K** in profit alone. Even with steep discounts on some items, the sheer margin on copiers drives the bulk of the business's bottom line.
 3. **Regional Strength:** The **South** region is the top performer for top-line revenue, generating **$2.60M in sales**. Interestingly, while the South generated more revenue, the **Central** region yielded significantly more profit ($343K vs $309K in the South), suggesting heavier discounting or lower-margin item sales in the South region.
 
+## Live Web Dashboard
+A lightweight FastAPI + Plotly dashboard has been added to provide a web-based view of the same analytics shown in Power BI. 
+The live dashboard is deployed on Render and can be viewed here: [Insert Render URL here once deployed]
+
+To run the web dashboard locally:
+```bash
+uvicorn app.main:app --reload
+```
+Navigate to `http://localhost:8000` to view the interactive dashboard.
+
 ## Power BI Dashboard
 Detailed instructions for setting up the Power BI dashboard (including connecting directly to the SQLite database via ODBC) are located in `docs/powerbi_instructions.md`.
 
